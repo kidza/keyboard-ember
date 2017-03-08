@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
             var duration = 0;
 
             function playTone() {
-                setTimeout(function() {
+            	Ember.run.later(function() {
                     if (i < userTones.length) {
                         duration = userTones[i].duration * 400;
                         for (var j = 0; j < keyboardTones.length; j++) {
@@ -20,7 +20,6 @@ export default Ember.Controller.extend({
                             }
                         }
                         i++;
-
                         playTone();
                     }
                 }, duration)
@@ -29,7 +28,7 @@ export default Ember.Controller.extend({
 
             function triggerSynchedMouseEvent(elem, duration) {
 		        triggerMouseEvent(elem, 'mousedown');
-		        setTimeout(function() {
+		        Ember.run.later(function() {
 		            triggerMouseEvent(elem, 'mouseup');
 		        }, duration);
 		    };
